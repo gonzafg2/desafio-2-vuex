@@ -60,9 +60,15 @@ const store = new Vuex.Store({
     ]
   },
   getters: {
+    // Retorna la cantidad de juegos totales.
     juegosTotal(state) {
       return state.juegos.length;
     },
+    // Retorna la cantidad de juegos totales con stock > 0.
+    juegosTotalConStock(state, getters) {
+      return getters.juegosConStock.length;
+    },
+    // Retorna el stock total, considerando todos los juegos.
     stockTotales(state) {
       let total = null;
       for (let juego of state.juegos) {
@@ -70,10 +76,12 @@ const store = new Vuex.Store({
       }
       return total;
     },
+    // Retorna el listado de juegos con stock > 0.
     juegosConStock(state) {
       const juegoStock = state.juegos.filter(fil => fil.stock > 0);
       return juegoStock;
     },
+    // Retorna el juego buscado por código.
     juegoBuscado(state, getters) {
       const juego = codigo =>getters.juegosConStock.filter(fil => fil.codigo == codigo);
       return juego;

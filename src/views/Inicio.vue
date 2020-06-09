@@ -9,18 +9,15 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Inicio",
   data() {
     return {};
   },
   computed: {
-    titulo() {
-      return this.$store.state.titulo;
-    },
-    subtitulo() {
-      return this.$store.state.subtitulo;
-    },
+    ...mapState(["titulo", "subtitulo"]),
   },
 };
 </script>

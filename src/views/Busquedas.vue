@@ -4,8 +4,8 @@
       <h2 class="text-center w-100 mb-4">Encuentre su juego aquí</h2>
       <input type="text" v-model="codigo"
         class="form-control" placeholder="Código del juego...">
-      <small class="form-text text-muted">Total de Juegos: <strong>{{ juegosTotales }}</strong></small>
-      <small class="form-text text-muted">Stock Total: <strong>{{ totalStock }}</strong></small>
+      <small class="form-text text-muted">Total de Juegos: <strong>{{ juegosTotal }}</strong></small>
+      <small class="form-text text-muted">Stock Total: <strong>{{ stockTotales }}</strong></small>
     </div>
     <ListadoBusqueda :codigo="this.codigo" class="my-5" />
   </div>
@@ -13,6 +13,7 @@
 
 <script>
 import ListadoBusqueda from "./../components/ListadoBusqueda";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Busquedas",
@@ -25,15 +26,7 @@ export default {
     }
   },
   computed: {
-    juegosTotales() {
-      return this.$store.getters.juegosTotal;
-    },
-    totalStock() {
-      return this.$store.getters.stockTotales;
-    },
-    // buscador() {
-    //   return this.$store.getters.juegoBuscado(this.codigo);
-    // }
+    ...mapGetters(["juegosTotal", "stockTotales"])
   },
 };
 </script>

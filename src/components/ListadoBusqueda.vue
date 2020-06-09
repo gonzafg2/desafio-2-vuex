@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "ListadoBusqueda",
   props: {
@@ -44,14 +46,11 @@ export default {
     },
   },
   computed: {
-    // juegos() {
-    //   return this.$store.state.juegos;
-    // },
-    juegosPropiedades() {
-      return this.$store.state.juegosPropiedades;
-    },
+    ...mapState(["juegosPropiedades"]),
     buscador() {
-      return this.codigo == "" ? this.$store.getters.juegosConStock : this.$store.getters.juegoBuscado(this.codigo);
+      return this.codigo == ""
+        ? this.$store.getters.juegosConStock
+        : this.$store.getters.juegoBuscado(this.codigo);
     },
   },
 };
