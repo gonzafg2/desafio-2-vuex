@@ -1,7 +1,7 @@
 <template>
   <div class="my-5 d-flex flex-column align-items-center justify-content-center">
     <div class="form-group">
-      <label class="text-center w-100 mb-4">Encuentre su juego aquí</label>
+      <h2 class="text-center w-100 mb-4">Encuentre su juego aquí</h2>
       <input type="text" v-model="codigo"
         class="form-control" placeholder="Código del juego...">
       <small class="form-text text-muted">Total de Juegos: <strong>{{ juegosTotales }}</strong></small>
