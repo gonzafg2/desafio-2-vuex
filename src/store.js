@@ -7,7 +7,14 @@ const store = new Vuex.Store({
   state: {
     titulo: "32bits",
     subtitulo: "Juegos de PC y Consolas",
-    juegosPropiedades: ["Código", "Nombre", "Stock", "Precio", "Color", "Destacado"],
+    juegosPropiedades: [
+      "Código",
+      "Nombre",
+      "Stock",
+      "Precio",
+      "Color",
+      "Destacado",
+    ],
     juegos: [
       {
         codigo: "0001",
@@ -15,7 +22,7 @@ const store = new Vuex.Store({
         stock: 100,
         precio: 30000,
         color: "red",
-        destacado: true
+        destacado: true,
       },
       {
         codigo: "0002",
@@ -23,7 +30,7 @@ const store = new Vuex.Store({
         stock: 100,
         precio: 25000,
         color: "blue",
-        destacado: false
+        destacado: false,
       },
       {
         codigo: "0003",
@@ -31,7 +38,7 @@ const store = new Vuex.Store({
         stock: 100,
         precio: 15000,
         color: "green",
-        destacado: true
+        destacado: true,
       },
       {
         codigo: "0004",
@@ -39,7 +46,7 @@ const store = new Vuex.Store({
         stock: 100,
         precio: 35000,
         color: "yellow",
-        destacado: false
+        destacado: false,
       },
       {
         codigo: "0005",
@@ -47,7 +54,7 @@ const store = new Vuex.Store({
         stock: 100,
         precio: 10000,
         color: "blue",
-        destacado: false
+        destacado: false,
       },
       {
         codigo: "0006",
@@ -55,9 +62,9 @@ const store = new Vuex.Store({
         stock: 100,
         precio: 20000,
         color: "red",
-        destacado: true
+        destacado: true,
       },
-    ]
+    ],
   },
   getters: {
     // Retorna la cantidad de juegos totales.
@@ -78,17 +85,27 @@ const store = new Vuex.Store({
     },
     // Retorna el listado de juegos con stock > 0.
     juegosConStock(state) {
-      const juegoStock = state.juegos.filter(fil => fil.stock > 0);
+      const juegoStock = state.juegos.filter((fil) => fil.stock > 0);
       return juegoStock;
     },
     // Retorna el juego buscado por código.
     juegoBuscado(state, getters) {
-      const juego = codigo =>getters.juegosConStock.filter(fil => fil.codigo == codigo);
+      const juego = (codigo) =>
+        getters.juegosConStock.filter((fil) => fil.codigo == codigo);
       return juego;
-    }
+    },
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    ventaJuego(state, id ) {
+      setTimeout(function restarStock() {
+        let stockActual = state.juegos[id].stock;
+        let stockVenta = 1;
+        let stockRestante = stockActual - stockVenta;
+        state.juegos[id].stock = stockRestante;
+      }, 2000);
+    },
+  },
+  actions: {},
 });
 
 export default store;

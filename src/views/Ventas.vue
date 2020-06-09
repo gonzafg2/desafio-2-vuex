@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Ventas",
@@ -58,15 +58,11 @@ export default {
     ...mapState(["juegosPropiedades"]),
     ...mapGetters(["juegosTotalConStock", "juegosConStock"]),
   },
+  updated() {
+    mapGetters(["juegosConStock"])
+  },
   methods: {
-    ventaJuego(id) {
-      setTimeout(function restarStock(){
-        id
-
-
-
-      }, 2000);
-    },
+    ...mapMutations(["ventaJuego"])
   },
 };
 </script>
