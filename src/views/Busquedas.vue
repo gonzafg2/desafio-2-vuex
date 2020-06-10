@@ -7,7 +7,7 @@
       <small class="form-text text-muted">Total de Juegos: <strong>{{ juegosTotal }}</strong></small>
       <small class="form-text text-muted">Stock Total: <strong>{{ stockTotales }}</strong></small>
     </div>
-    <ListadoBusqueda :codigo="this.codigo" class="my-5" />
+    <ListadoBusqueda :codigo="this.codigo" class="my-4" />
   </div>
 </template>
 
