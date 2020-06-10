@@ -31,7 +31,7 @@
           <td class="text-center">
             {{ item.stock }}
           </td>
-          <td class="text-center">$ {{ item.precio }}</td>
+          <td class="text-center">$ {{ item.precio.toLocaleString('es-CL') }}</td>
           <td class="text-center">
             {{ item.color }}
           </td>

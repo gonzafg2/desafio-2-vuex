@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 
@@ -65,6 +65,8 @@ const store = new Vuex.Store({
         destacado: true,
       },
     ],
+    ventasPropiedades: ["Código", "Nombre", "Precio", "Cantidad"],
+    ventas: [],
   },
   getters: {
     // Retorna la cantidad de juegos totales.
@@ -94,15 +96,47 @@ const store = new Vuex.Store({
         getters.juegosConStock.filter((fil) => fil.codigo == codigo);
       return juego;
     },
+    // Retorna el total de ventas realizadas (Precio).
+    precioVentaTotal(state) {
+      let cero = 0;
+      let total = state.ventas.map(fil => fil.precio);
+      return total.length == 0
+        ? cero
+        : total.reduce((uno, dos) => uno + dos).toLocaleString('es-CL')
+    }
   },
   mutations: {
-    ventaJuego(state, id ) {
-      setTimeout(function restarStock() {
-        let stockActual = state.juegos[id].stock;
-        let stockVenta = 1;
-        let stockRestante = stockActual - stockVenta;
-        state.juegos[id].stock = stockRestante;
-      }, 2000);
+    async ventaJuego(state, id) {
+      setTimeout(
+        await function restarStock() {
+          let stockActual = state.juegos[id].stock;
+          let stockVenta = 1;
+          let stockRestante = stockActual - stockVenta;
+          state.juegos[id].stock = stockRestante;
+          console.log(1);
+
+          setTimeout(function registrarVenta() {
+            let stockVenta = 1;
+            let ventaJuegoCodigo = state.juegos[id].codigo;
+            let ventaJuegoNombre = state.juegos[id].nombre;
+            let ventaJuegoPrecio = state.juegos[id].precio;
+
+            let venta = {
+              cantidad: stockVenta,
+              codigo: ventaJuegoCodigo,
+              nombre: ventaJuegoNombre,
+              precio: ventaJuegoPrecio,
+            };
+
+            state.ventas.push(venta);
+
+            console.log(2);
+
+            alert("Venta procesada");
+          }, 1000);
+        },
+        2000
+      );
     },
   },
   actions: {},

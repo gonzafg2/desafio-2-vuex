@@ -22,7 +22,7 @@
           {{ item.stock }}
         </td>
         <td class="text-center" :style="{ backgroundColor: item.color }">
-          $ {{ item.precio }}
+          $ {{ item.precio.toLocaleString('es-CL') }}
         </td>
         <td class="text-center" :style="{ backgroundColor: item.color }">
           {{ item.color }}
