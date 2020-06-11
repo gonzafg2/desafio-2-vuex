@@ -9,6 +9,7 @@
     </div>
     <ListadoBusqueda :codigo="this.codigo" class="my-4" />
   </div>
+  <!-- oiasdoiads -->
 </template>
 
 <script>
